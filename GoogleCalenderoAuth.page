@@ -1,0 +1,24 @@
+<apex:page controller="GoogleCalenderApi" > 
+      <apex:slds />
+    <apex:actionstatus id="statusCal">
+        <apex:facet name="start">
+            <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                <div class="waitingHolder" style="top: 100px; width: 91px;">
+                    <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                    <span class="waitingDescription">Loading...</span>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionstatus>
+      <apex:form id="theForm" > 
+          <apex:pageMessages ></apex:pageMessages>
+          <apex:pageBlock > 
+              <apex:commandButton action="{!authorization}" value="Connect with Calender"/> &nbsp; &nbsp;
+              <apex:commandButton action="{!doFetchAccessToken}" value="Get Access Toekn " status="statusCal"
+                                  reRender="theForm" /> &nbsp; &nbsp;
+              
+              <!-- <apex:commandButton action="{!dorefreshToken}" value="Do Refresh Toekn "/> -->
+              
+        </apex:pageBlock> 
+     </apex:form> 
+  </apex:page>
