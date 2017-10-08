@@ -3,9 +3,9 @@ public class GoogleCalenderApi {
 		public static Boolean isAccessToken { get; set; }
 		
 		// Your CLient ID Here
-		public Final static String consumerKey='66961230764-r1vo4jmpuigh9ijl9scgfoadnpdtpadv.apps.googleusercontent.com'; 
+		public Final static String consumerKey='XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'; 
 		// Your Client Secret Here
-		public Final static String clientSecret='nmrO4RY7EGd2_9OpXx7MmX7f'; 
+		public Final static String clientSecret='XXXXXXX'; 
 		
 		public static String googleoAuthUrl='https://accounts.google.com/o/oauth2/auth?'; 
 		// Your redirect URI here that you entered while creating the App in Google API console
@@ -92,7 +92,7 @@ public class GoogleCalenderApi {
                     return null;
 				}     
 			}catch(System.Exception e){
-				if(String.valueOf(e.getMessage()).startsWith('Unauthorize endpoint')){
+				if(String.valueOf(e.getMessage()).startsWith('Unauthorized endpoint')){
 					errorMessage = 'Unauthorize endpoint: An Administer must go to Setup -> Administer -> Security Control ->'
 						+' Remote Site Setting and add '+' '+ endPoint +' Endpoint';
                     return null;
@@ -146,7 +146,7 @@ public class GoogleCalenderApi {
 			}catch(System.Exception e){
 				
 				System.debug('#### Exception Executed '+e.getStackTraceString() + ' '+e.getMessage());
-				if(String.valueOf(e.getMessage()).startsWith('Unauthorize endpoint')){
+				if(String.valueOf(e.getMessage()).startsWith('Unauthorized endpoint')){
 					errorMessage = 'Unauthorize endpoint: An Administer must go to Setup -> Administer -> Security Control ->'
 						+' Remote Site Setting and add '+' '+ 'https://www.googleapis.com/oauth2/v4/token' +' Endpoint';
 				}else{
