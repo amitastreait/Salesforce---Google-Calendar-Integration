@@ -1,5 +1,8 @@
 public class GoogleCalendarActionsController {
     public static String Summary { get; set; }
+    Public Static String allCalendars { get; set; }
+    public Static Boolean isListCalendars { get; set; }
+    
     public static void doListAllCalendar(){
         List<GoogleCalenderInfo__c> googleSettingInfoList = new List<GoogleCalenderInfo__c>();
         googleSettingInfoList = GoogleCalenderInfo__c.getAll().values();
@@ -17,10 +20,11 @@ public class GoogleCalendarActionsController {
         try{
             HttpRes = http.send(httpReq);
             if(httpRes.getStatusCode() == 200){
+                isListCalendars = true;
                 System.debug('#### HtteRes '+HttpRes.getBody());
+                allCalendars = HttpRes.getBody();
                 ApexPages.addmessage(new ApexPages.message(
-                    	ApexPages.severity.CONFIRM,'Calendar List Retrieved Successfully '+
-                			httpRes.getBody()));
+                    	ApexPages.severity.CONFIRM,'Calendar List Retrieved Successfully '));
             }else{
                 String errorMessage = 'Unexpected Error while communicating with Google Calendar API. '
 						+'Status '+HttpRes.getStatus()+' and Status Code '+HttpRes.getStatuscode();
@@ -55,6 +59,8 @@ public class GoogleCalendarActionsController {
         try{
             HttpRes = http.send(httpReq);
             if(HttpRes.getStatusCode() == 200){
+                isListCalendars = false;
+                allCalendars = '';
                 ApexPages.addmessage(new ApexPages.message(
                     	  ApexPages.severity.CONFIRM,'Calendar Created Successfully  '+'\n'+' '+
                 			HttpRes.getBody()));
